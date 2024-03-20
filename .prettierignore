@@ -1,0 +1,11 @@
+node_modules
+package.json
+package-lock.json
+.husky
+.vscode
+.azuredevops
+azure-pipelines
+dist
+.env
+README.md
+

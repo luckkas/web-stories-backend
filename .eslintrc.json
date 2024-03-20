@@ -1,0 +1,22 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  },
+  "overrides": [
+    {
+      "files": ["babel.config.js", ".babelrc.js"],
+      "parserOptions": {
+        "sourceType": "script"
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "version":"0.2.0",
+  "configurations": [
+    {
+      "type": "node-terminal",
+      "name": "Debug main.ts File",
+      "request": "launch",
+      "command": "npm run dev -- ${fileBasenameNoExtension}",
+      "cwd": "${fileDirname}"
+    },
+  ]
+}
