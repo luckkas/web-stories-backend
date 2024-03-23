@@ -5,14 +5,8 @@ interface Props {
 }
 
 export function CheckProps<T extends Props>(propertyNames: (keyof T)[]) {
-  return function (
-    target: unknown,
-    propertyKey: string,
-    descriptor: PropertyDescriptor,
-  ) {
-    const originalMethod = descriptor.value as (
-      ...args: [T]
-    ) => Promise<unknown>
+  return function (target: unknown, propertyKey: string, descriptor: PropertyDescriptor) {
+    const originalMethod = descriptor.value as (...args: [T]) => Promise<unknown>
 
     descriptor.value = async function (...args: [T]) {
       const props: T = args[0]

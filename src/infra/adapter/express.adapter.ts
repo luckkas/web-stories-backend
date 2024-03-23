@@ -1,10 +1,4 @@
-import express, {
-  Express,
-  NextFunction,
-  Request,
-  Response,
-  Router,
-} from 'express'
+import express, { Express, NextFunction, Request, Response, Router } from 'express'
 import compression from 'compression'
 import cors from 'cors'
 import { serverErrorMiddleware } from '@infra/api/middleware/server-error.middleware'
@@ -32,30 +26,27 @@ export class ExpressAdapter implements HttpServerInterface {
   }
 
   on(method: HttpMethod, url: string, callback: HttpCallbackInterface): void {
-    this.router[method](
-      url,
-      async (req: Request, res: Response, next: NextFunction) => {
-        try {
-          const requestCustom: Record<string, string> = {
-            ...req.params,
-            ...req.query,
-            ...req.body,
-          }
-
-          const output = await callback(requestCustom)
-
-          const response: HttpResponseInterface = {
-            statusCode: res.statusCode,
-            message: res.statusMessage,
-            response: output,
-          }
-
-          return res.json(response)
-        } catch (error) {
-          next(error)
+    this.router[method](url, async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const requestCustom: Record<string, string> = {
+          ...req.params,
+          ...req.query,
+          ...req.body,
         }
-      },
-    )
+
+        const output = await callback(requestCustom)
+
+        const response: HttpResponseInterface = {
+          statusCode: res.statusCode,
+          message: res.statusMessage,
+          response: output,
+        }
+
+        return res.json(response)
+      } catch (error) {
+        next(error)
+      }
+    })
   }
 
   listen(port: number): void {
