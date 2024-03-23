@@ -6,7 +6,12 @@ export type SignUpProps = {
   password: string
 }
 
+export type UserProps = {
+  username: string
+  password: string
+}
 
 export interface UserRepositoryInterface {
   signUp(user: User): Promise<void>
+  find(username: string): Promise<User | undefined>
 }
