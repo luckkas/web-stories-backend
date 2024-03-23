@@ -24,10 +24,5 @@ module.exports = {
       },
     ],
   ],
-  ignore: [
-    'src/**/*.spec.ts',
-    'src/**/test/*',
-    'src/**/*.test.ts',
-    'src/**/test.ts',
-  ],
+  ignore: ['src/**/*.spec.ts', 'src/**/test/*', 'src/**/*.test.ts', 'src/**/test.ts'],
 }

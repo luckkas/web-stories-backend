@@ -16,13 +16,9 @@ export class Application {
 
   start(): void {
     try {
-      logger(
-        'Application',
-        `Running on ${applicationConfiguration.nodeEnv} mode`,
-        {
-          level: LogLevel.INFO,
-        },
-      )
+      logger('Application', `Running on ${applicationConfiguration.nodeEnv} mode`, {
+        level: LogLevel.INFO,
+      })
       this.expressAdapter.listen(applicationConfiguration.nodePort)
       this.httpRouter.init(modulesRoutes)
     } catch (error: unknown) {

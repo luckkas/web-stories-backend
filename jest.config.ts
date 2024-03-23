@@ -10,10 +10,7 @@ import { Config } from '@jest/types'
  * @param {string} srcPath
  * @param {string} tsconfigPath
  */
-function makeModuleNameMapper(
-  srcPath: string,
-  tsconfigPath: string,
-): { [key: string]: string } {
+function makeModuleNameMapper(srcPath: string, tsconfigPath: string): { [key: string]: string } {
   // Get paths from tsconfig
   const { paths } = require(tsconfigPath).compilerOptions
 

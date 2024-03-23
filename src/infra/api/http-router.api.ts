@@ -13,14 +13,10 @@ export class HttpRouter implements HttpRouterInterface {
 
   init(routes: RouteConfigInterface[]): void {
     for (const route of routes) {
-      this.httpServerInstance.on(
-        route.method,
-        route.url,
-        async (params: unknown) => {
-          const controller = route.controller
-          return await controller.handle(params)
-        },
-      )
+      this.httpServerInstance.on(route.method, route.url, async (params: unknown) => {
+        const controller = route.controller
+        return await controller.handle(params)
+      })
     }
   }
 }

@@ -5,18 +5,8 @@ export type ErrorProps = {
 }
 
 export class GenericError extends CustomError<ErrorProps> {
-  constructor(
-    name: string,
-    message: string,
-    statusCode?: number,
-    props?: ErrorProps,
-  ) {
-    super(
-      name,
-      message ?? 'Internal Server Error',
-      statusCode ?? 500,
-      props ?? {},
-    )
+  constructor(name: string, message: string, statusCode?: number, props?: ErrorProps) {
+    super(name, message ?? 'Internal Server Error', statusCode ?? 500, props ?? {})
   }
 
   errorInfo(): ErrorProps {

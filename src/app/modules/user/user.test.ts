@@ -9,11 +9,11 @@ const mockUserRepository: UserRepositoryInterface = {
     users.push(user)
   },
   find: async (username: string): Promise<User | undefined> => {
-    if(username === 'lucas')
-      return Promise.resolve(new User('lucas', 'lucas@example.com',  await hashPassword('123')))
+    if (username === 'lucas')
+      return Promise.resolve(new User('lucas', 'lucas@example.com', await hashPassword('123')))
 
     return Promise.resolve(undefined)
-  }
+  },
 }
 
 describe('UserFeatures', () => {
@@ -23,7 +23,7 @@ describe('UserFeatures', () => {
     users = []
 
     it('Should be sign up a new user', async () => {
-      const props = {username: 'lucas', password: '123', email: 'lucas@example.com'}
+      const props = { username: 'lucas', password: '123', email: 'lucas@example.com' }
       await signController.handle(props)
       expect(users[0].username).toEqual(props.username)
       expect(users[0].password).toEqual(props.password)
@@ -35,21 +35,21 @@ describe('UserFeatures', () => {
     const loginUseCase = new LoginUseCase(mockUserRepository)
     const loginController = new LoginController(loginUseCase)
 
-
     it('Should be login', async () => {
       const response = await loginController.handle({
         username: 'lucas',
-        password: '123'
+        password: '123',
       })
       expect(response.length).toEqual(192)
     })
 
     it('Should be throw an error', async () => {
-      expect(loginController.handle({
-        username: 'lucas1',
-        password: '123'
-      })).rejects.toThrow()
+      expect(
+        loginController.handle({
+          username: 'lucas1',
+          password: '123',
+        }),
+      ).rejects.toThrow()
     })
   })
-
 })
