@@ -1,4 +1,3 @@
-
 export type CreateStoryProps = {
   title: string
   author: string
@@ -22,7 +21,6 @@ export interface CategoryModelInterface {
   id: string
   name: string
 }
-
 
 export interface StoryRepositoryInterface {
   createStory(story: StoryModelInterface): Promise<void>
