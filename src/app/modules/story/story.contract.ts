@@ -24,6 +24,7 @@ export interface CategoryModelInterface {
 
 export interface StoryRepositoryInterface {
   createStory(story: StoryModelInterface): Promise<void>
+  findById(id: string): Promise<StoryModelInterface | undefined>
 }
 
 export interface CategoryRepositoryInterface {

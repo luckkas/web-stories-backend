@@ -8,7 +8,18 @@ import { CreateStoryController } from './story.controller'
 import { StoryModel } from './story.model'
 import { CreateStoryUseCase } from './story.usecase'
 
-const stories: StoryModelInterface[] = []
+const stories: StoryModelInterface[] = [{
+  author: 'George Martin',
+  description: 'An action story',
+  categoryId: 'a143141',
+  coverImage: 'example.png',
+  createdAt: new Date().toISOString(),
+  id: 'asf143143',
+  title: 'The strange man',
+  updatedAt: new Date().toISOString()
+}]
+
+
 const categories: CategoryModelInterface[] = [
   {
     id: 'a143141',
@@ -24,6 +35,9 @@ const mockStoryRepository: StoryRepositoryInterface = {
   createStory: async (story: StoryModel): Promise<void> => {
     stories.push(story)
   },
+  findById: function (id: string): Promise<StoryModelInterface> {
+    throw new Error('Function not implemented.')
+  }
 }
 
 const mockCategoryRepository: CategoryRepositoryInterface = {
@@ -46,8 +60,8 @@ describe('StoryFeatures', () => {
         description: 'A great knight and your horse',
       })
 
-      expect(stories[0].title).toEqual('Shadow Knight')
-      expect(stories[0].author).toEqual('Sins Maker')
+      expect(stories[1].title).toEqual('Shadow Knight')
+      expect(stories[1].author).toEqual('Sins Maker')
     })
 
     it('Should be throw an error for category id does not exists', async () => {
